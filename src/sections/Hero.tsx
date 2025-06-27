@@ -1,3 +1,5 @@
+'use client'; // Required for React hooks in Next.js 13+ App Router
+import { Header } from "@/sections/Header";
 import memojiImage from '@/assets/images/memoji-computer.png';
 import Image from 'next/image';
 import ArrowDown from '@/assets/icons/arrow-down.svg';
@@ -5,12 +7,64 @@ import grainIamge from '@/assets/images/grain.jpg';
 import StarIcon from '@/assets/icons/star.svg';
 import SparkleIcon from '@/assets/icons/sparkle.svg'
 import { HeroOrbit } from '@/components/HeroOrbit';
+import { useState, useEffect } from 'react';
+
 
 export const HeroSection = () => {
-  return( 
 
-  <div className='py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip '>
-    <div className='absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]'>
+  const [activeSection, setActiveSection] = useState('home');
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+  
+  useEffect(() => {
+  const handleScroll = () => {
+    const sections = ['home', 'about', 'projects', 'contact'];
+    const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+    let found = false;
+
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const { offsetTop, offsetHeight } = element;
+        if (
+          scrollPosition >= offsetTop &&
+          scrollPosition < offsetTop + offsetHeight
+        ) {
+          setActiveSection(section);
+          found = true;
+          break;
+        }
+      }
+    }
+
+    // ✅ Extra fallback: if no section matched and you're near bottom, assume contact
+    const nearBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 50;
+    if (!found && nearBottom) {
+      setActiveSection('contact');
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  handleScroll();
+
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
+
+  return( 
+  <>
+  <Header activeSection={activeSection} />
+  <div id="home" className='py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip '>
+    {/* Background elements - moved to lower z-index to ensure content is clickable */}
+    <div className='absolute inset-0 -z-20 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]'>
     <div 
     className='absolute inset-0 -z-30 opacity-5 '
      style={{
@@ -22,6 +76,7 @@ export const HeroSection = () => {
     <div className='size-[1020px] hero-ring '></div>
     <div className='size-[1220px] hero-ring '></div>
     
+    {/* Orbit elements - ensured they don't interfere with content clickability */}
     <HeroOrbit size={430} rotation={-14} shouldOrbit
     orbitDuration='30s' shouldSpin spinDuration='3s' >
       <SparkleIcon className='size-8 text-emerald-300/20'/>
@@ -64,7 +119,8 @@ export const HeroSection = () => {
     </HeroOrbit>
     
     </div>
-    <div className="container ">
+    {/* Main content - increased z-index to ensure it's above background elements */}
+    <div className="container relative z-10 ">
       <div className='flex flex-col items-center '>
       <Image src={memojiImage} 
       className="size-[100px]"
@@ -83,16 +139,25 @@ export const HeroSection = () => {
       </p>
       </div>
       <div className='flex flex-col md:flex-row justify-center items-center mt-8 gap-4'>
-        <button className='inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl'>
+        {/* Added onClick to scroll to projects section - no style changes */}
+        <button 
+          onClick={() => scrollToSection('projects')}
+          className='inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl relative z-20 cursor-pointer'
+        >
           <span className='font-semibold'>Explore My Work</span>
           <ArrowDown className="size-4" />
         </button>
-        <button className='inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl'>
+        {/* Added onClick to scroll to contact section - no style changes */}
+        <button 
+          onClick={() => scrollToSection('contact')}
+          className='inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl relative z-20 cursor-pointer'
+        >
           <span>👋</span>
           <span className='font-semibold'>Let's Connect</span>
         </button>
       </div>
     </div>
   </div>
+  </>
   );
 };

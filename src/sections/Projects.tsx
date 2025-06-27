@@ -7,31 +7,33 @@ import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg';
 import grainImage from '@/assets/images/grain.jpg';
 import { SectionHeader } from "@/components/SectionHeader";
 import { Card } from "@/components/Card";
+import proj1 from "@/assets/images/proj1.png"
+import proj2 from "@/assets/images/proj2.png"
 
 const portfolioProjects = [
   {
     company: "Acme Corp",
-    year: "2022",
-    title: "Dark Saas Landing Page",
+    year: "2025",
+    title: "E-Commerce Grocery Website (Zayrah)",
     results: [
-      { title: "Enhanced user experience by 40%" },
-      { title: "Improved site speed by 50%" },
-      { title: "Increased mobile traffic by 35%" },
+      { title: "React, Node.js, Express.js, MongoDB, Tailwind" },
+      { title: "Stripe payments and Role-based dashboards" },
+      { title: "Responsive UI and  Real-time API integrations" },
     ],
-    link: "https://youtu.be/4k7IdSLxh6w",
-    image: darkSaasLandingPage,
+    link:"https://zayrah-by-harisizm.vercel.app",
+    image: proj1,
   },
   {
     company: "Innovative Co",
-    year: "2021",
-    title: "Light Saas Landing Page",
+    year: "2025",
+    title: "Fashion E-Commerce Site",
     results: [
-      { title: "Boosted sales by 20%" },
-      { title: "Expanded customer reach by 35%" },
-      { title: "Increased brand awareness by 15%" },
+      { title: "React.js, HTML, CSS, Javascript" },
+      { title: "Category-based product listings" },
+      { title: "Functional Cart page, Login/Signup pages " },
     ],
-    link: "https://youtu.be/7hi5zwO75yc",
-    image: lightSaasLandingPage,
+    link: "https://zayrbyharisizm.vercel.app",
+    image: proj2,
   },
   {
     company: "Quantum Dynamics",
@@ -49,7 +51,8 @@ const portfolioProjects = [
 
 export const ProjectsSection = () => {
   return (
-    <section className="pb-16 lg:py-24">
+    // Added id="projects" for navigation targeting - no other changes
+    <section id="projects" className="pb-16 lg:py-24">
     <div className="container">
       <SectionHeader eyebrow=" Real-world Results" title="Featured Projects" description="See how I transformed concepts into engaging digital experiences."/> 
       <div className="flex flex-col mt-10 gap-20 md:mt-20">

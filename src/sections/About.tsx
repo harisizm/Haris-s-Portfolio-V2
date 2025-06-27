@@ -7,7 +7,7 @@ import JavascriptIcon from '@/assets/icons/square-js.svg';
 import HTMLIcon from '@/assets/icons/html5.svg';
 import CssIcon from '@/assets/icons/css3.svg';
 import ReactIcon from '@/assets/icons/react.svg';
-import ChromeIcon from '@/assets/icons/chrome.svg';
+import typescriptIcon from '@/assets/icons/typescript.svg';
 import GithubIcon from '@/assets/icons/github.svg';
 import mapImage from '@/assets/images/map.png';
 import smileMemoji from '@/assets/images/memoji-smile.png';
@@ -34,8 +34,8 @@ const toolboxItems = [
     iconType: ReactIcon,
   },
   {
-    title: 'Chrome',
-    iconType: ChromeIcon,
+    title: 'TypeScript',
+    iconType: typescriptIcon,
   },
   {
     title: 'Github',
@@ -45,7 +45,7 @@ const toolboxItems = [
 
 const hobbies = [
   {
-    title:'Painting',
+    title:'Sketching',
     emoji: '🎨',
     left:'5%',
     top:'5%',
@@ -57,8 +57,8 @@ const hobbies = [
     top:'5%',
   },
   {
-    title:'Hiking',
-    emoji: '🥾',
+    title:'FPV Drones',
+    emoji: '🛸',
     left:'35%',
     top:'40%',
   },
@@ -69,8 +69,8 @@ const hobbies = [
     top:'35%',
   },
   {
-    title:'Music',
-    emoji: '🎵',
+    title:'Basketball',
+    emoji: '🏀',
     left:'70%',
     top:'45%',
   },
@@ -81,8 +81,8 @@ const hobbies = [
     top:'65%',
   },
   {
-    title:'Reading',
-    emoji: '📚',
+    title:'Snooker',
+    emoji: '🎱',
     left:'45%',
     top:'70%',
   },
@@ -92,7 +92,7 @@ const hobbies = [
 export const AboutSection = () => {
   const constraintRef =useRef(null);
   return (
-  <div className="py-20 lg:py-28">
+  <div id="about" className="py-20 lg:py-28">
     <div className="container">
     <SectionHeader 
     eyebrow="About Me"
