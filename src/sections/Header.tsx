@@ -1,7 +1,7 @@
 'use client';
 
 interface HeaderProps {
-  activeSection: string;
+  activeSection?: string;
 }
 
 export const Header = ({ activeSection }: HeaderProps) => {
