@@ -149,7 +149,7 @@ export const HeroSection = () => {
         </button>
         {/* Added onClick to scroll to contact section - no style changes */}
         <button 
-          onClick={() => scrollToSection('contact')}
+           onClick={() => window.location.href = 'https://www.linkedin.com/in/harisizm' }
           className='inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl relative z-20 cursor-pointer'
         >
           <span>👋</span>
