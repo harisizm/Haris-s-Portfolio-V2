@@ -1,6 +1,3 @@
-import darkSaasLandingPage from "@/assets/images/dark-saas-landing-page.png";
-import lightSaasLandingPage from "@/assets/images/light-saas-landing-page.png";
-import aiStartupLandingPage from "@/assets/images/ai-startup-landing-page.png";
 import Image from "next/image";
 import CheckCircleIcon from '@/assets/icons/check-circle.svg';
 import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg';
@@ -9,8 +6,21 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { Card } from "@/components/Card";
 import proj1 from "@/assets/images/proj1.png"
 import proj2 from "@/assets/images/proj2.png"
+import timetableGeneratorImage from "@/assets/images/timetable-generator.png";
 
 const portfolioProjects = [
+   {
+    company: "The University of Lahore",
+    year: "Aug,2025",
+    title: "Timetable Generator for the Department of Software Engineering",
+    results: [
+      { title: "900+ Students can now generate a shareable timetable image in seconds by uploading the already provided excel sheet by UOL" },
+      { title: " Smart semester/section-based filtering with cross-checking subjects with UOL’s latest curriculum" },
+      { title: "Python libraries used: streamlit, pandas, matplotlib, openpyxl" },
+    ],
+    link: "https://timetable-generator-uol-se.streamlit.app",
+    image: timetableGeneratorImage,
+  },
   {
     company: "Acme Corp",
     year: "2025",
@@ -35,18 +45,8 @@ const portfolioProjects = [
     link: "https://zayrbyharisizm.vercel.app",
     image: proj2,
   },
-  {
-    company: "Quantum Dynamics",
-    year: "2023",
-    title: "AI Startup Landing Page",
-    results: [
-      { title: "Enhanced user experience by 40%" },
-      { title: "Improved site speed by 50%" },
-      { title: "Increased mobile traffic by 35%" },
-    ],
-    link: "https://zayrah-backend-deploy.vercel.app",
-    image: aiStartupLandingPage,
-  },
+ 
+  
 ];
 
 export const ProjectsSection = () => {
@@ -54,7 +54,7 @@ export const ProjectsSection = () => {
     // Added id="projects" for navigation targeting - no other changes
     <section id="projects" className="pb-16 lg:py-24">
     <div className="container">
-      <SectionHeader eyebrow=" Real-world Results" title="Featured Projects" description="See how I transformed concepts into engaging digital experiences."/> 
+      <SectionHeader eyebrow=" Real-world Results" title="Featured Projects" description="See how I build meaningful applications that combine AI, data, and modern web technologies."/> 
       <div className="flex flex-col mt-10 gap-20 md:mt-20">
         {portfolioProjects.map((project, projectIndex)=>(
           <Card 

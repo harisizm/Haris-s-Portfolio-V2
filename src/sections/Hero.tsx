@@ -135,7 +135,7 @@ export const HeroSection = () => {
       </div>
       <div className='max-w-lg mx-auto '>
       <h1 className='font-serif text-3xl md:text-5xl text-center mt-8 tracking-wide '>Building Exceptional User Experiences</h1>
-      <p className='mt-4 text-center text-white/60 md:text-lg'>I specialize in transforming designs into functional, high-performing web applications. Let`s discuss your next project.
+      <p className='mt-4 text-center text-white/60 md:text-lg'>I specialize in  MERN stack. Lets discuss your next project.
       </p>
       </div>
       <div className='flex flex-col md:flex-row justify-center items-center mt-8 gap-4'>
@@ -148,13 +148,13 @@ export const HeroSection = () => {
           <ArrowDown className="size-4" />
         </button>
         {/* Added onClick to scroll to contact section - no style changes */}
-        <button 
-           onClick={() => window.location.href = 'https://www.linkedin.com/in/harisizm' }
-          className='inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl relative z-20 cursor-pointer'
-        >
-          <span>👋</span>
-          <span className='font-semibold'>Lets Connect</span>
-        </button>
+        <button
+  onClick={() => window.open('https://www.linkedin.com/in/harisizm', '_blank')}
+  className='inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl relative z-20 cursor-pointer'
+>
+  <span>👋</span>
+  <span className='font-semibold'>Lets Connect</span>
+</button>
       </div>
     </div>
   </div>
