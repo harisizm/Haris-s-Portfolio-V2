@@ -1,10 +1,10 @@
-'use client';
+"use client";
 import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg';
 
 const footerLinks = [
   {
     title: 'My Resume',
-    href: 'https://harisizms-portfolio.vercel.app/images/cv1.pdf',
+    href: '/assets/docs/HAFIZ MUHAMMAD HARIS -SE.pdf',
   },
   {
     title: 'Github',
@@ -28,7 +28,7 @@ export const Footer = () => {
       <div className="container relative z-10">
         <div className="border-t border-white/15 py-6 text-sm flex flex-col md:flex-row md:justify-between items-center gap-8">
           <div className="text-white/40">
-            &copy; 2025. All rights reserved - Haris Iftikhar
+            &copy; 2026. All rights reserved - Haris
           </div>
           <nav className="flex flex-col md:flex-row items-center gap-8">
             {footerLinks.map(link => (

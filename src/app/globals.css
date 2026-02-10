@@ -3,8 +3,13 @@
 @tailwind utilities;
 
 @layer base{
+  html{
+    font-size: 77%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+  }
   .nav-item{
-    @apply px-4 py-1.5 rounded-full text-white/70 text-sm font-semibold hover:bg-white/10 hover:text-white
+    @apply px-6 py-2 rounded-full text-white/70 text-base font-semibold hover:bg-white/10 hover:text-white
     transition duration-300;
   }
   .hero-ring{

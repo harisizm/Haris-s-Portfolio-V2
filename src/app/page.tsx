@@ -1,9 +1,9 @@
 import { Header } from "@/sections/Header";
 import { HeroSection } from "@/sections/Hero";
 import { ProjectsSection } from "@/sections/Projects";
-import { TapeSection } from "@/sections/Tape";
-import { TestimonialsSection } from "@/sections/Testimonials";  
-import { AboutSection } from "@/sections/About";  
+import { EducationAndCertificationSection } from "@/sections/EducationAndCertification";
+import { ExperienceSection } from "@/sections/Experience";
+import { AboutSection } from "@/sections/About";
 import { ContactSection } from "@/sections/Contact";
 import { Footer } from "@/sections/Footer";
 
@@ -11,14 +11,13 @@ import { Footer } from "@/sections/Footer";
 export default function Home() {
   return (
     <div>
-     <Header/>
-     <HeroSection/>
-     <ProjectsSection/>
-     <TapeSection/>
-     <TestimonialsSection/>
-     <AboutSection/>
-     <ContactSection/>
-     <Footer/>
+      <HeroSection />
+      <ProjectsSection />
+      <EducationAndCertificationSection />
+      <ExperienceSection />
+      <AboutSection />
+      <ContactSection />
+      <Footer />
     </div>
   );
 }

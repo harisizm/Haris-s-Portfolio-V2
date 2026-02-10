@@ -1,13 +1,19 @@
-export const TechIcon = ({component}:{component:React.ElementType}) => {
+interface TechIconProps {
+  component?: React.ElementType;
+  iconUrl?: string;
+}
 
-  const Component =component;
-  return <>
-    <Component className="size-10 fill-[url(#tech-icon-gradient)]"/>
-    <svg className="size-0 absolute ">
-      <linearGradient id="tech-icon-gradient">
-        <stop offset="0%" stopColor=" rgb(110 231 183)" />
-        <stop offset="100%" stopColor=" rgb(56 189 248)" />
-      </linearGradient>
-      </svg>
-  </>;
+export const TechIcon = ({ component, iconUrl }: TechIconProps) => {
+  return (
+    <>
+      {component ? (
+        (() => {
+          const Component = component;
+          return <Component className="size-10" />;
+        })()
+      ) : (
+        <img src={iconUrl} alt="tech icon" className="size-10 object-contain" />
+      )}
+    </>
+  );
 };
