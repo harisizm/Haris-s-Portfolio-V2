@@ -85,27 +85,42 @@ export const HeroSection = () => {
     return () => window.removeEventListener('scroll', handleScrollDismiss);
   }, [isCVHovered]);
 
+  const cvEnterTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const handleCVEnter = () => {
+    // Clear any existing leave timeout
     if (cvTimeoutRef.current) clearTimeout(cvTimeoutRef.current);
+
+    // Clear any existing enter timeout
+    if (cvEnterTimeoutRef.current) clearTimeout(cvEnterTimeoutRef.current);
 
     if (cvButtonRef.current) {
       const rect = cvButtonRef.current.getBoundingClientRect();
-      const pWidth = Math.min(500, window.innerWidth * 0.9);
-      const pHeight = window.innerHeight * 0.65;
+      const pWidth = 380; // Smaller width
+      const pHeight = 500; // Smaller height
 
-      // Calculate horizontal center
-      let left = rect.left + rect.width / 2 - pWidth / 2;
-      // Keep within viewport bounds
-      left = Math.max(10, Math.min(left, window.innerWidth - pWidth - 10));
+      let left = 0;
+      let top = 0;
+      let origin = "bottom right";
 
-      // Calculate vertical position (prefer above)
-      let top = rect.top - pHeight - 20;
-      let origin = "bottom center";
+      // Check if there is enough space on the left
+      if (rect.left > pWidth + 40) {
+        // Desktop / Wide screen side-anchor (Left of button)
+        left = rect.left - pWidth - 20;
+        top = rect.bottom - pHeight;
+        origin = "bottom right";
+      } else {
+        // Mobile / Narrow screen center-above anchor
+        left = rect.left + rect.width / 2 - pWidth / 2;
+        left = Math.max(10, Math.min(left, window.innerWidth - pWidth - 10));
+        top = rect.top - pHeight - 20;
+        origin = "bottom center";
 
-      if (rect.top < pHeight + 40) {
-        // Not enough space above, place below
-        top = rect.bottom + 20;
-        origin = "top center";
+        // If top is too tight, place below
+        if (rect.top < pHeight + 40) {
+          top = rect.bottom + 20;
+          origin = "top center";
+        }
       }
 
       setPreviewStyle({
@@ -116,6 +131,14 @@ export const HeroSection = () => {
     }
 
     setIsCVHovered(true);
+  };
+
+  const handleCVLeave = () => {
+    // Clear entry timeout if mouse leaves before it triggers
+    if (cvEnterTimeoutRef.current) clearTimeout(cvEnterTimeoutRef.current);
+
+    // Standard leave delay to allow moving mouse to the preview
+    cvTimeoutRef.current = setTimeout(() => setIsCVHovered(false), 800);
   };
 
   return (
@@ -193,7 +216,7 @@ export const HeroSection = () => {
                 />
                 <text className="text-[10px] font-bold uppercase tracking-widest fill-white/80">
                   <textPath href="#curve" startOffset="0%">
-                    Available for new projects 
+                    Available for new projects
                   </textPath>
                 </text>
               </svg>
@@ -365,9 +388,7 @@ export const HeroSection = () => {
                   ref={cvButtonRef}
                   className='relative group cursor-pointer z-20'
                   onMouseEnter={handleCVEnter}
-                  onMouseLeave={() => {
-                    cvTimeoutRef.current = setTimeout(() => setIsCVHovered(false), 800);
-                  }}
+                  onMouseLeave={handleCVLeave}
                   onClick={() => setIsCVModalOpen(true)}
                 >
                   {/* Animated Gradient Border Wrapper */}
@@ -399,7 +420,6 @@ export const HeroSection = () => {
         initial={false}
         animate={isCVHovered ? "visible" : "hidden"}
         style={{
-          top: previewStyle.top,
           left: previewStyle.left,
           transformOrigin: previewStyle.transformOrigin,
         }}
@@ -407,24 +427,22 @@ export const HeroSection = () => {
           hidden: {
             opacity: 0,
             scale: 0.5,
-            filter: "blur(10px)",
-            transition: { duration: 0.4, ease: "easeInOut" }
+            transition: { duration: 0.3, ease: "easeInOut" },
+            transitionEnd: { top: -9999 }
           },
           visible: {
             opacity: 1,
             scale: 1,
-            filter: "blur(0px)",
-            transition: { duration: 0.5, ease: "easeOut" }
+            top: previewStyle.top,
+            transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] }
           }
         }}
-        className={`fixed w-[90vw] md:w-[500px] h-[65vh] z-[100] ${isCVHovered ? 'pointer-events-auto' : 'pointer-events-none'}`}
+        className={`fixed w-[380px] max-w-[calc(100vw-20px)] h-[500px] z-[100] ${isCVHovered ? 'pointer-events-auto' : 'pointer-events-none'}`}
         onMouseEnter={() => {
           if (cvTimeoutRef.current) clearTimeout(cvTimeoutRef.current);
           setIsCVHovered(true);
         }}
-        onMouseLeave={() => {
-          cvTimeoutRef.current = setTimeout(() => setIsCVHovered(false), 800);
-        }}
+        onMouseLeave={handleCVLeave}
       >
         <div className="relative w-full h-full bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden">
           {/* Loading Spinner / Placeholder */}
@@ -439,8 +457,11 @@ export const HeroSection = () => {
             scrolling="no"
           />
 
+          {/* Bottom Gradient Overlay (30%) */}
+          <div className="absolute bottom-0 left-0 w-full h-[30%] bg-gradient-to-t from-black/40 via-black/10 to-transparent z-15 pointer-events-none"></div>
+
           {/* Overlay Button - Always Visible */}
-          <div className={`absolute inset-0 bg-black/10 backdrop-blur-[1px] flex items-center justify-center transition-opacity duration-300 z-20 ${isCVHovered ? 'opacity-100' : 'opacity-0'}`}>
+          <div className={`absolute inset-0 bg-black/5 backdrop-blur-[1px] flex items-center justify-center transition-opacity duration-300 z-20 ${isCVHovered ? 'opacity-100' : 'opacity-0'}`}>
             <button
               onClick={(e) => {
                 e.stopPropagation();

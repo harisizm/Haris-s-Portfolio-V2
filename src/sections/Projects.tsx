@@ -135,9 +135,11 @@ const TechIcon = ({ name, icon }: { name: string; icon: string }) => {
         {name}
         <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-950/90"></div>
       </div>
-      <img
+      <Image
         src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${icon.split('-')[0]}/${icon}.svg`}
         alt={name}
+        width={32}
+        height={32}
         className="size-8 object-contain opacity-70 group-hover/tech:opacity-100 transition-all duration-300 group-hover/tech:scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]"
       />
     </div>
