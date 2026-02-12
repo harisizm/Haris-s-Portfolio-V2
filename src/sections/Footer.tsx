@@ -4,7 +4,7 @@ import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg';
 const footerLinks = [
   {
     title: 'My Resume',
-    href: '/assets/docs/HAFIZ MUHAMMAD HARIS -SE.pdf',
+    href: '/assets/docs/HAFIZ MUHAMMAD.pdf',
   },
   {
     title: 'Github',

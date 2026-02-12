@@ -239,7 +239,7 @@ export const HeroSection = () => {
             <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
 
               <h2 className='font-serif text-3xl md:text-5xl tracking-wide max-w-lg'>
-                Building Production-Grade Web Systems That Solve Real Problems
+                Building Production-Grade Web Apps That Solve Real Problems
               </h2>
               <p className='mt-10 text-white/60 md:text-lg max-w-lg'>
                 Full-stack software engineer specializing in MERN, data visualization, and automation. I design, ship, and scale applications used by real users.
@@ -451,7 +451,7 @@ export const HeroSection = () => {
           </div>
 
           <iframe
-            src="/assets/docs/HAFIZ MUHAMMAD HARIS -SE.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+            src="/assets/docs/HAFIZ MUHAMMAD.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
             className="w-full h-full border-none relative z-10 bg-white"
             title="CV Preview"
             scrolling="no"
@@ -494,7 +494,7 @@ export const HeroSection = () => {
                 <h3 className="font-serif text-xl font-bold text-gray-900">Curriculum Vitae</h3>
                 <div className="flex items-center gap-4">
                   <a
-                    href="/assets/docs/HAFIZ MUHAMMAD HARIS -SE.pdf"
+                    href="/assets/docs/HAFIZ MUHAMMAD.pdf"
                     download="Hafiz_Muhammad_Haris_CV.pdf"
                     className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 font-medium transition-colors"
                   >
@@ -516,7 +516,7 @@ export const HeroSection = () => {
               {/* PDF Viewer */}
               <div className="flex-1 bg-gray-100">
                 <iframe
-                  src="/assets/docs/HAFIZ MUHAMMAD HARIS -SE.pdf"
+                  src="/assets/docs/HAFIZ MUHAMMAD.pdf"
                   className="w-full h-full"
                   title="Full CV"
                 />
